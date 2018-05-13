@@ -1,6 +1,6 @@
 package lab.cliente.model;
 
-import lab.pessoa.Pessoa;
+import lab.pessoa.model.Pessoa;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

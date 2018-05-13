@@ -1,4 +1,4 @@
-# Spring-Boot Lab 
+# Spring-Boot Lab
 
 Projeto que simula CRUD simples de cliente apenas pra estudo e familiarização do *`Spring framework`*.
 
@@ -27,5 +27,7 @@ Pra quem não tiver nenhuma familiaridade tenho alguns pontos que pareciam ser b
 </dependency>
 ```
 
-2. É necessário criar o banco de dados manualmente. Se preferir, pode mudar o nome de acordo com o que achar mais conveniente. É só ir até o arquivo *`application.properties`* e mudar o o ultimo pedaço da url de conexão
-*`spring.datasource.url=jdbc:postgresql://localhost:5432/lab_spring`* de *`lab_spring`* pro nome que escolheu.
+2. É necessário criar o banco de dados manualmente (use qualquer nome que lhe for conveniente) e alterar a senha e a URL de conexão com o banco de dados caso seja necessário. Essas mudanças podem ser feitas no arquivo *`application.properties`* nas propriedades:
+* *`spring.datasource.url=jdbc:postgresql://localhost:5432/<nome_banco_de_dados>`*
+
+* *`spring.datasource.password=<password>`*

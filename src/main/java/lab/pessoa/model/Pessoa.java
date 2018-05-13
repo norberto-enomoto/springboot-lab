@@ -1,7 +1,7 @@
-package lab.pessoa;
+package lab.pessoa.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
 
 /**
  *
@@ -29,9 +28,9 @@ public abstract class Pessoa implements Serializable {
     @NotNull
     @Column(name = "razao_social", nullable = false, length = 80)
     private String razaoSocial;
-    @Temporal(TemporalType.DATE)
+    @CreationTimestamp
     @Column(name = "data_cadastro")
-    private Date dataCadastro;
+    private Timestamp dataCadastro;
 
     public int getId() {
         return id;
@@ -49,11 +48,11 @@ public abstract class Pessoa implements Serializable {
         this.razaoSocial = razaoSocial;
     }
 
-    public Date getDataCadastro() {
+    public Timestamp getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(Timestamp dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 }
