@@ -17,6 +17,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <a href="${pageContext.request.contextPath}/cliente/form">Novo</a><br><br>
+                    <a href="${pageContext.request.contextPath}/cliente/report/clientes">Report</a><br><br>
                     <table class="table table-hover table-sm">
                         <thead>
                             <tr>
