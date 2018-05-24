@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
-    
+
     static final String CUSTOM_QUERY = "SELECT c.id, c.nome_fantasia, p.razao_social, c.credito "
             + "FROM tb_cliente c INNER JOIN tb_pessoa p ON c.id = p.id";
     @Query(name = CUSTOM_QUERY, nativeQuery = true)
@@ -24,5 +24,4 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
      *
      * Docs for JdbcTemplate;
      */
-
 }
