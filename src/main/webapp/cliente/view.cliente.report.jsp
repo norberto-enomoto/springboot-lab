@@ -16,7 +16,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <form method="get">
+                    <form method="post">
                         <select name="tipoArquivo">
                             <c:forEach items="${filetype}" var="filetype">
                             <option value="${filetype.key}">${filetype.value}</option>

@@ -90,12 +90,18 @@ public class ClienteController {
     }
 
     @RequestMapping(path = "/report/clientes", method = RequestMethod.GET)
-    public ModelAndView reportClientes(@RequestParam(value = "acao", required = false) String acao,
+    public ModelAndView reportClientes() {
+        ModelAndView view = new ModelAndView("/cliente/view.cliente.report");
+        HashMap fileType = ReportUtils.tipoArquivo();
+        view.addObject("filetype", fileType);
+        return view;
+    }
+
+    @RequestMapping(path = "/report/clientes", method = RequestMethod.POST)
+    public void reportClientes(@RequestParam(value = "acao", required = false) String acao,
             @RequestParam(value = "tipoArquivo", required = false) String tipoArquivo,
             HttpServletResponse response) {
-
-        ModelAndView view = new ModelAndView("/cliente/view.cliente.report");
-        try {
+        try{
             if (StringUtils.isNotBlank(acao)
                     && StringUtils.isNotBlank(tipoArquivo)) {
                 String realPath = ReportUtils.contextPath(context);
@@ -108,9 +114,5 @@ public class ClienteController {
         } catch (SQLException | JRException | IOException e) {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, e);
         }
-
-        HashMap fileType = ReportUtils.tipoArquivo();
-        view.addObject("filetype", fileType);
-        return view;
     }
 }
