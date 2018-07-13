@@ -16,6 +16,7 @@ public class Cliente extends Pessoa implements Serializable {
 
     @Column(name = "nome_fantasia")
     private String nomeFantasia;
+    @Column(columnDefinition="numeric(10,2) default '0.00'")
     private double credito;
 
     public String getNomeFantasia() {

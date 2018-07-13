@@ -4,6 +4,7 @@
     Author     : lucas
 --%>
 
+<%@include file="../WEB-INF/taglibs/taglibs.jsp" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,6 +20,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <c:if test="${param.error ne null}">
+                        <div class="col-md-3 alert alert-danger" role="alert">
+                            Usuário e/ou senha inválidos.
+                        </div>
+                    </c:if>
                     <form action="${pageContext.request.contextPath}/login" method="post">
                         <div class="row">
                             <div class="col-md-3">

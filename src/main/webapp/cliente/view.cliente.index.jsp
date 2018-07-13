@@ -49,7 +49,11 @@
                             <c:forEach var="obj" items="${list}">
                                 <tr>
                                     <td>${obj.id}</td>
-                                    <td>${obj.razaoSocial} / ${obj.nomeFantasia}</td>
+                                    <td>${obj.razaoSocial}
+                                        <c:if test="${not empty obj.nomeFantasia}">
+                                         / ${obj.nomeFantasia}
+                                        </c:if>
+                                    </td>
                                     <td>
                                         <fmt:setLocale value="pt-BR"/>
                                         <fmt:formatNumber value="${obj.credito}" type="currency"/>

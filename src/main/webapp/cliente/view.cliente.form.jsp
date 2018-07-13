@@ -38,7 +38,7 @@
                         </c:if>
                         <div class="row">
                             <div class="col-md-4 form-group">
-                                <label>Razão Social / Nome</label>
+                                <label>* Razão Social / Nome</label>
                                 <input name="razaoSocial" value="${obj.razaoSocial}"
                                        class="form-control form-control-sm">
                             </div>

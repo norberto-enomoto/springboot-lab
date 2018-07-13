@@ -22,12 +22,12 @@ public class ClienteReportService extends ReportGenerator {
     private DataSource dataSource;
 
     public ByteArrayOutputStream clienteReport() throws SQLException, JRException {
-        System.out.println("dataSource: " + dataSource);
         Connection connection = dataSource.getConnection();
         String sql = "SELECT c.id, p.razao_social, "
                 + "c.nome_fantasia, c.credito, current_date "
                 + "FROM tb_cliente c "
-                + "INNER JOIN tb_pessoa p ON c.id = p.id";
+                + "INNER JOIN tb_pessoa p ON c.id = p.id "
+                + "ORDER BY c.nome_fantasia ASC;";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 return fromResultSet(rs);

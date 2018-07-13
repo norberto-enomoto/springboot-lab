@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import org.hibernate.annotations.CreationTimestamp;
 
 /**
@@ -25,7 +25,7 @@ public abstract class Pessoa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotNull
+    @NotEmpty(message = "Nome não pode ser vazio.")
     @Column(name = "razao_social", nullable = false, length = 80)
     private String razaoSocial;
     @CreationTimestamp

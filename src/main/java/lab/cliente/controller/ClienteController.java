@@ -18,8 +18,8 @@ import net.sf.jasperreports.engine.JRException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,18 +44,17 @@ public class ClienteController {
     private ServletContext context;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView index(ModelMap map) {
+    public ModelAndView index() {
         ModelAndView mv = new ModelAndView("/cliente/view.cliente.index");
-        map.addAttribute("list", model.findAllByOrderByIdAsc());
+        mv.addObject("list", model.findAllByOrderByIdAsc());
         return mv;
     }
 
     @RequestMapping(path = "/form", method = RequestMethod.GET)
     public ModelAndView form() {
-        ModelAndView view = new ModelAndView("/cliente/view.cliente.form");
-        return view;
+        return new ModelAndView("/cliente/view.cliente.form");
     }
-
+    
     @RequestMapping(path = "/form", method = RequestMethod.POST)
     public ModelAndView adicionar(@Valid Cliente cliente, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -73,13 +72,16 @@ public class ClienteController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.POST)
-    public ModelAndView atualizar(@PathVariable("id") int id, @Valid Cliente cliente, BindingResult result) {
+    public ModelAndView atualizar(@PathVariable("id") int id,
+            @Valid @ModelAttribute(name = "obj") Cliente cliente, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
         cliente.setId(id);
-        if (result.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return form();
         }
         model.save(cliente);
-        return new ModelAndView("redirect:/cliente");
+        modelAndView.setViewName("redirect:/cliente");
+        return modelAndView;
     }
 
     @RequestMapping(path = "/deletar/{id}", method = RequestMethod.GET)
@@ -98,8 +100,8 @@ public class ClienteController {
     }
 
     @RequestMapping(path = "/report/clientes", method = RequestMethod.POST)
-    public void reportClientes(@RequestParam(value = "acao", required = false) String acao,
-            @RequestParam(value = "tipoArquivo", required = false) String tipoArquivo,
+    public void reportClientes(@RequestParam(value = "acao") String acao,
+            @RequestParam(value = "tipoArquivo") String tipoArquivo,
             HttpServletResponse response) {
         try{
             if (StringUtils.isNotBlank(acao)
