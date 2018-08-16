@@ -32,32 +32,31 @@
             </div>
             <div class="row">
                 <div class="col-md-10">
-                    <form method="post">
+                    <form:form method="post" modelAttribute="obj">
                         <c:if test="${not empty obj.id and obj.id ne null}">
-                            <input name="id" type="hidden" value="${obj.id}">
+                            <form:hidden path="id"/>
                         </c:if>
                         <div class="row">
+                            <spring:bind path="razaoSocial"/>
                             <div class="col-md-4 form-group">
-                                <label>* Razão Social / Nome</label>
-                                <input name="razaoSocial" value="${obj.razaoSocial}"
-                                       class="form-control form-control-sm">
+                                <form:label path="razaoSocial">* Razão Social / Nome</form:label>
+                                <form:input path="razaoSocial" cssClass="form-control form-control-sm"
+                                            cssErrorClass="form-control form-control-sm error"/>
+                                <form:errors path="razaoSocial" cssClass="text-danger" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4 form-group">
-                                <label>Nome Fantasia</label>
-                                <input name="nomeFantasia" value="${obj.nomeFantasia}"
-                                       class="form-control form-control-sm">
+                                <form:label path="nomeFantasia">Nome Fantasia</form:label>
+                                <form:input path="nomeFantasia" cssClass="form-control form-control-sm"/>
+                                <form:errors path="nomeFantasia" cssClass="text-danger"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4 form-group">
-                                <label>Crédito</label>
-                                <input name="credito"
-                                       value="<fmt:formatNumber
-                                           pattern="###.##"
-                                           type="number" value="${obj.credito}"/>"
-                                       class="form-control form-control-sm">
+                                <form:label path="credito">Crédito</form:label>
+                                <form:input path="credito" cssClass="form-control form-control-sm"/>
+                                <form:errors path="credito" cssClass="text-danger"/>
                             </div>
                         </div>
                         <div class="row">
@@ -71,7 +70,7 @@
                                 </a>
                             </div>
                         </div>
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </div>

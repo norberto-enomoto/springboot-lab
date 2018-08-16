@@ -74,14 +74,12 @@ public class ClienteController {
     @RequestMapping(path = "/{id}", method = RequestMethod.POST)
     public ModelAndView atualizar(@PathVariable("id") int id,
             @Valid @ModelAttribute(name = "obj") Cliente cliente, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
         cliente.setId(id);
         if (bindingResult.hasErrors()) {
             return form();
         }
         model.save(cliente);
-        modelAndView.setViewName("redirect:/cliente");
-        return modelAndView;
+        return new ModelAndView("redirect:/cliente");
     }
 
     @RequestMapping(path = "/deletar/{id}", method = RequestMethod.GET)
